@@ -1,39 +1,58 @@
 import React from "react";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import "./styles/Navbar.css";
-function App() {
+
+const NavBar = (props) => {
+  const { active } = props;
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/projects">Projects</Link>
-            </li>
-            <li>
-              <Link to="/articles">Articles</Link>
-            </li>
-            <li>
-              <Link to="/contact">Contact</Link>
-            </li>
-          </ul>
+      <div className="navbar-container">
+        <nav className="navbar">
+          <div className="navbar-back">
+            <ul className="nav-list">
+              <li
+                className={active === "home" ? "nav-item active" : "nav-item"}
+              >
+                <Link to="/">Home</Link>
+              </li>
+              <li
+                className={active === "about" ? "nav-item active" : "nav-item"}
+              >
+                <Link to="/about">About</Link>
+              </li>
+              <li
+                className={
+                  active === "projects" ? "nav-item active" : "nav-item"
+                }
+              >
+                <Link to="/projects">Projects</Link>
+              </li>
+              <li
+                className={
+                  active === "articles" ? "nav-item active" : "nav-item"
+                }
+              >
+                <Link to="/articles">Articles</Link>
+              </li>
+              <li
+                className={
+                  active === "contact" ? "nav-item active" : "nav-item"
+                }
+              >
+                <Link to="/contact">Contact</Link>
+              </li>
+            </ul>
+          </div>
         </nav>
-
-        <Route path="/" exact component={Home} />
-        <Route path="/about" component={About} />
-        <Route path="/projects" component={Projects} />
-        <Route path="/articles" component={Articles} />
-        <Route path="/contact" component={Contact} />
       </div>
+      <Route path="/" exact component={Home} />
+      <Route path="/about" component={About} />
+      <Route path="/projects" component={Projects} />
+      <Route path="/articles" component={Articles} />
+      <Route path="/contact" component={Contact} />
     </Router>
   );
-}
+};
 
 function Home() {
   return <h1>Home</h1>;
@@ -53,4 +72,4 @@ function Contact() {
   return <h1>Contact</h1>;
 }
 
-export default App;
+export default NavBar;
